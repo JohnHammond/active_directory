@@ -1,0 +1,27 @@
+{
+    "domain": "xyz.com",
+
+    "groups" : [
+        {
+            "name": "Employees"
+        }
+    ],
+
+    "users": [
+
+        {
+            "name": "Alice Lice",
+            "password":"P@ssw0rd789",
+            "groups": [
+                "Employees"
+            ]
+        },
+        {
+            "name": "Bob Ob",
+            "password":"P@ssw0rdABC",
+            "groups": [
+                "Employees"
+            ]
+        }
+    ]
+}
