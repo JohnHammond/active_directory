@@ -46,10 +46,10 @@ for ( $i = 1; $i -le $UserCount; $i++ ){
     $last_name = (Get-Random -InputObject $last_names)
     $password = (Get-Random -InputObject $passwords)
 
-    $new_user = @{ `
+    $new_user = @{
         "name"="$first_name $last_name"
         "password"="$password"
-        "groups" = (Get-Random -InputObject $groups).name
+        "groups" = @((Get-Random -InputObject $groups).name)
         }
 
     if ( $local_admin_indexes | Where { $_ -eq $i  } ){
@@ -64,7 +64,7 @@ for ( $i = 1; $i -le $UserCount; $i++ ){
     $passwords.Remove($password)
 }
 
-ConvertTo-Json -InputObject @{ 
+ConvertTo-Json -Depth 100 -InputObject @{
     "domain"= "xyz.com"
     "groups"=$groups
     "users"=$users
