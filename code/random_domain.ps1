@@ -30,7 +30,7 @@ if ( $LocalAdminCount -ne 0){
         
         $random_index = (Get-Random -InputObject (1..($UserCount)) | Where-Object { $local_admin_indexes -notcontains $_ } )
         $local_admin_indexes += @( $random_index )
-        echo "adding $random_index to local_admin_indexes $local_admin_indexes"
+        Write-Host "Adding $random_index to local_admin_indexes $local_admin_indexes"
     }
 }
 
@@ -46,14 +46,14 @@ for ( $i = 1; $i -le $UserCount; $i++ ){
     $last_name = (Get-Random -InputObject $last_names)
     $password = (Get-Random -InputObject $passwords)
 
-    $new_user = @{ `
+    $new_user = @{
         "name"="$first_name $last_name"
         "password"="$password"
         "groups" = (Get-Random -InputObject $groups).name
         }
 
-    if ( $local_admin_indexes | Where { $_ -eq $i  } ){
-        echo "user $i is local admin"
+    if ( $local_admin_indexes | Where-Object { $_ -eq $i  } ){
+        Write-Host "User $i is local admin"
         $new_user["local_admin"] = $true
     }
 
